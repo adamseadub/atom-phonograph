@@ -1,0 +1,230 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+@font-face {
+  font-family: 'Icons';
+  src: url('atom://phonograph/fonts/open-iconic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.phonograph-container{
+  position: absolute;
+  right: 15px;
+  z-index: 100;
+}
+.pg-player{
+  display: -webkit-flex;
+  // white-space: nowrap;
+  border: 1px solid transparent;
+  position: absolute;
+  right: 0;
+  -webkit-transition: all 250ms;
+  margin-bottom: 20px;
+  z-index: 5;
+  color: #fff;
+  overflow: hidden;
+  bottom: 0;
+  opacity: 0.5;
+  height: 100px;
+  .all{
+    width: 100%;
+  }
+  .pg-close, .pg-collapse{
+    margin: 2px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 2;
+    width: 20px;
+    line-height: 15px;
+    vertical-align: middle;
+    &::before{
+      margin: 0;
+      margin-left: -2px;
+      font-family: "Icons";
+      content: "\e06b";
+      font-size: 10px;
+      font-weight: normal;
+    }
+  }
+  .pg-close{
+    left: 79px;
+    width: 18px;
+    &::before{
+      content: "\e0d6";
+    }
+  }
+  &.pg-collapsed .pg-collapse::before{
+    content: "\e06a";
+  }
+  &.pg-collapsed .pg-close{
+    left: auto;
+    right: 1px;
+  }
+  &.pg-collapsed, &.pg-paused, &.pg-stopped{
+    position: relative;
+    .play{
+      opacity: 0.7;
+    }
+    button{
+      opacity: 0;
+    }
+    .pg-button-bar{
+      right: -1px;
+      bottom: 5px;
+    }
+    .all{
+      position: absolute;
+      z-index: 2;
+      display: block;    
+      min-width: 0;
+      right: 0;
+      bottom: 0;
+      background: none !important;
+    }
+    p{
+      display: none;
+    }
+    .pg-next{
+      border-right: 0;
+    }
+    progress{
+      display: none;
+    }
+  }
+  &.pg-paused:hover .pg-collapse{
+    opacity: 0;
+  }
+  &.pg-paused, &.pg-stopped{
+    -webkit-transform: translateY(0px);
+  }
+  &.pg-playing{
+    -webkit-transform: translateY(0px);
+  }
+  &.pg-playing + .pg-playing{
+    -webkit-transform: translateY(-120px);
+  }
+  &.pg-playing ~ .pg-paused, &.pg-paused ~ .pg-playing{
+    -webkit-transform: translateY(-120px);
+  }
+  &.pg-paused + .pg-paused{
+    -webkit-transform: translateY(-120px);
+  }
+  &.pg-playing{
+    .pg-button-bar .pg-play::before{
+      content: "\e08e";
+      font-weight: normal;
+    }
+  }
+  &:hover{
+    opacity: 1;
+    .pg-play, .pg-prev, .pg-next{
+      opacity: 0.6;
+    }
+    .pg-collapse, .pg-close{
+      opacity: 0.5;
+    }
+  }
+  .pg-button-bar{
+    z-index: 1;
+    display: block;
+    position: absolute;
+    -webkit-transition: all 250ms;
+    right: 2px;
+    bottom: 24px;
+  } 
+  button{
+    display: inline-block;
+    width: 30px;
+    line-height: 22px;
+    margin: 0;
+    border: 0;
+    margin-right: 3px;
+    opacity: 0.3;
+    &:hover, &:active{
+      opacity: 1 !important;
+    }
+    font-family: "Icons";
+    &.pg-play::before{
+      content: "\e08f";
+    }
+    &.pg-prev::before{
+      content: "\e091";
+    }
+    &.pg-next::before{
+      content: "\e092";
+    }
+  }
+
+  progress{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    border: 0;
+    z-index: 5;
+    width: 100%;
+    background: none;
+    box-shadow: none;
+    height: 20px;
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+  progress::-webkit-progress-value{
+    background-image: none !important;
+    border-color: inherit;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  progress::-webkit-progress-bar {
+    opacity: 0.2;
+    &:hover{
+      opacity: 1;
+    }
+    height: 20px;
+    background-image: none !important;
+    -webkit-transition: all 250ms;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  p{
+    &.artist{
+      font-size: 12px;
+      font-weight: bold;
+    }
+    &.track{
+      font-size: 10px;
+    }
+    overflow: hidden;
+    max-width: 140px;
+    text-align: right;
+    height: 20px;
+    padding: 0;
+    padding-right: 4px;
+    margin: 0;
+  }
+  .pg-artwork{
+    -webkit-transition: all 300ms;
+    display: -webkit-flex;
+    -webkit-flex: 1;
+    -webkit-flex-direction: column;
+    height: 100%;
+    min-width: 100px;
+    z-index: 1;
+  }
+  .all{
+    display: -webkit-flex;
+    -webkit-flex: 2;
+    min-width: 140px;
+    white-space: nowrap;
+    -webkit-flex-direction: column;
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "iTunes",
+    "art": "update_art_itunes.scpt"
+  },
+  {
+    "name": "Spotify",
+    "art": "update_art_spotify.scpt"
+  }
+]
